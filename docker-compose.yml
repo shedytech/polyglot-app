@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  java-service:
+    build: ./java-service
+    ports:
+      - "7000:8080"
+
+  node-service:
+    build: ./node-service
+    ports:
+      - "3000:3000"
+
+  python-service:
+    build: ./python-service
+    ports:
+      - "5000:5000"
+
