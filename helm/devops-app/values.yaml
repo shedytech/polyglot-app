@@ -5,7 +5,7 @@ java:
   nodePort: 30007
   image:
     repository: shedyvince29/java-service
-    tag: java
+    tag: v1
 
 node:
   name: node-service
