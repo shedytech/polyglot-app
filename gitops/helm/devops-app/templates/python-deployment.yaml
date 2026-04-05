@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.python.name }}
+spec:
+  replicas: {{ .Values.python.replicas }}
+  selector:
+    matchLabels:
+      app: {{ .Values.python.name }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.python.name }}
+    spec:
+      containers:
+      - name: {{ .Values.python.name }}
+        image: {{ .Values.python.image.repository }}:{{ .Values.python.image.tag }}
+        ports:
+        - containerPort: {{ .Values.python.port }}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Values.python.name }}
+spec:
+  type: NodePort
+  selector:
+    app: {{ .Values.python.name }}
+  ports:
+    - port: 80
+      targetPort: {{ .Values.python.port }}
+      nodePort: {{ .Values.python.nodePort }}
